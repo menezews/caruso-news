@@ -4,17 +4,24 @@ import tailwindcss from '@tailwindcss/vite'
 import fs from 'node:fs'
 import path from 'node:path'
 
-import siteConfiguration from './.figma/make/site.json'
+// Configuração do site (título, descrição, idioma, favicon). Fica na raiz, visível, para não depender de pastas ocultas.
+import siteConfiguration from './site.config.json'
 
 
 // Vite config — https://vitejs.dev/config/
-export default defineConfig(({ mode }) => {
+export default defineConfig(({ mode, command }) => {
   // .figma/make/deploy-preview passes `--mode development` for cached-preview builds.
   const emitSourcemaps = mode === 'development'
 
   return {
-    // Relative assets work on GitHub Pages project sites and on custom domains.
-    base: process.env.FIGMA_PUBLIC_URL ? `${process.env.FIGMA_PUBLIC_URL}/` : './',
+    // GitHub Pages: o site fica em https://menezews.github.io/caruso-news/
+    // Em desenvolvimento local o caminho continua sendo "/".
+    // FIGMA_PUBLIC_URL (se existir) continua tendo prioridade.
+    base: process.env.FIGMA_PUBLIC_URL
+      ? `${process.env.FIGMA_PUBLIC_URL}/`
+      : command === 'build'
+        ? '/caruso-news/'
+        : '/',
     build: {
       sourcemap: emitSourcemaps ? 'inline' : false,
       minify: !emitSourcemaps,
