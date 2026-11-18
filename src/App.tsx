@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type MouseEvent as ReactMouseEvent } from "react";
 import logoColorida from "./assets/caruso-logo.png";
 import logoBranca from "./assets/caruso-logo-branca.png";
 
@@ -199,8 +199,16 @@ function App() {
     setPlaybackKey((key) => key + 1);
   };
 
+  // Clicar em qualquer lugar da página avança para a próxima cena.
+  // Cliques em botões/links (controles, e futuros botões de ação) são ignorados aqui,
+  // para que cada botão faça apenas a sua própria função.
+  const handlePageClick = (event: ReactMouseEvent<HTMLElement>) => {
+    if ((event.target as HTMLElement).closest("button, a, input, select, textarea, [data-no-advance]")) return;
+    changeScene(scene + 1);
+  };
+
   return (
-    <main className="app-shell">
+    <main className="app-shell" onClick={handlePageClick}>
       <div className="player-frame">
         <div className="video-stage" key={`${scene}-${playbackKey}`}>
           {scene === 0 ? <Cover /> : <StoryScene story={stories[scene - 1]} />}
