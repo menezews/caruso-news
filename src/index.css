@@ -754,6 +754,257 @@
   }
 }
 
+/* ------------------------------------------------------------------
+   MOBILE (celular / tela em pé): vídeo vertical 9:16.
+   Garante que o vídeo + controles caibam inteiros na tela.
+   ------------------------------------------------------------------ */
+@media (max-width: 599px), (orientation: portrait) {
+  .player-frame {
+    width: min(520px, calc(100vw - 24px), calc((100svh - 36px - 64px) * 9 / 16));
+  }
+}
+
+/* Tablet em pé: a barra de controles e a legenda ocupam mais espaço */
+@media (min-width: 721px) and (orientation: portrait) {
+  .player-frame {
+    width: min(520px, calc(100vw - 24px), calc((100svh - 180px) * 9 / 16));
+  }
+}
+
+/* ------------------------------------------------------------------
+   DESKTOP: adaptação horizontal (16:9) da versão mobile.
+   Mesmo visual, mesmas cenas; tudo escala proporcionalmente ao tamanho
+   do vídeo (unidades cqw = 1% da largura do vídeo).
+   ------------------------------------------------------------------ */
+@media (min-width: 600px) and (orientation: landscape) {
+  .app-shell {
+    padding: 28px 36px 20px;
+  }
+
+  .player-frame {
+    width: min(1280px, calc(100vw - 72px), calc((100vh - 176px) * 16 / 9));
+  }
+
+  .video-stage {
+    aspect-ratio: 16 / 9;
+    container-type: inline-size;
+  }
+
+  .controls {
+    grid-template-columns: auto auto auto 1fr auto;
+    height: 74px;
+    padding: 0 26px;
+  }
+
+  .timeline {
+    margin: 0 22px;
+  }
+
+  .control-meta {
+    display: flex;
+    font-size: 9px;
+  }
+
+  .outside-caption {
+    display: flex;
+  }
+
+  /* ---------- Capa ---------- */
+  .cover-scene {
+    padding: 4.6cqw 5cqw;
+  }
+
+  .cover-scene .logo-img-light {
+    height: 8.4cqw;
+  }
+
+  .edition-pill {
+    padding: 0.7cqw 1.3cqw;
+    font-size: clamp(9px, 0.85cqw, 14px);
+  }
+
+  .cover-content {
+    height: 78%;
+    max-width: 70%;
+  }
+
+  .eyebrow {
+    margin-bottom: 1.8cqw;
+    font-size: clamp(9px, 0.9cqw, 15px);
+  }
+
+  .eyebrow > span {
+    width: 3.4cqw;
+  }
+
+  .cover-title {
+    font-size: 11.5cqw;
+    line-height: 0.84;
+  }
+
+  .outline-text {
+    margin-left: 7%;
+    line-height: 0.95;
+  }
+
+  .cover-meta {
+    gap: 2.4cqw;
+    margin-top: 3.6cqw;
+  }
+
+  .meta-label {
+    font-size: clamp(8px, 0.72cqw, 12px);
+  }
+
+  .cover-meta strong,
+  .cover-meta p {
+    font-size: clamp(11px, 1.2cqw, 19px);
+  }
+
+  .cover-footer {
+    right: 5cqw;
+    bottom: 3.6cqw;
+    left: 5cqw;
+    font-size: clamp(9px, 0.9cqw, 14px);
+  }
+
+  .orb-one {
+    width: 40cqw;
+    height: 40cqw;
+    right: -14cqw;
+    top: -16cqw;
+  }
+
+  .orb-two {
+    width: 15cqw;
+    height: 15cqw;
+    right: 30cqw;
+    bottom: -8cqw;
+  }
+
+  /* ---------- Notícias: foto à esquerda, texto à direita ---------- */
+  .story-scene {
+    grid-template-columns: 44% 56%;
+    grid-template-rows: 1fr;
+  }
+
+  .photo-credit {
+    bottom: 3cqw;
+    left: 3.4cqw;
+    font-size: clamp(8px, 0.7cqw, 12px);
+  }
+
+  .story-number {
+    right: 3.4cqw;
+    bottom: 2cqw;
+    font-size: 8cqw;
+  }
+
+  .story-content {
+    padding: 3.2cqw 5.4cqw 3cqw 4.2cqw;
+  }
+
+  .story-header {
+    padding-bottom: 1.5cqw;
+  }
+
+  .logo-img-dark {
+    height: 5cqw;
+  }
+
+  .story-header > span {
+    font-size: clamp(8px, 0.72cqw, 12px);
+  }
+
+  .story-copy {
+    padding-bottom: 5cqw;
+  }
+
+  .eyebrow.dark {
+    margin-bottom: 1.4cqw;
+  }
+
+  .story-copy h2 {
+    max-width: 100%;
+    font-size: 3.5cqw;
+  }
+
+  .story-summary {
+    max-width: 92%;
+    margin-top: 1.3cqw;
+    font-size: clamp(11px, 1.2cqw, 19px);
+  }
+
+  .story-bullets {
+    gap: 0.9cqw;
+    margin-top: 2cqw;
+  }
+
+  .story-bullets li {
+    grid-template-columns: 2.6cqw 1fr;
+    font-size: clamp(11px, 1.15cqw, 18px);
+  }
+
+  .bullet-index {
+    font-size: clamp(8px, 0.7cqw, 12px);
+  }
+
+  .metric-card {
+    right: 5.4cqw;
+    bottom: 2.6cqw;
+    gap: 1.1cqw;
+    padding-left: 1.2cqw;
+  }
+
+  .metric-card strong {
+    font-size: 2.8cqw;
+  }
+
+  .metric-card span {
+    max-width: 11cqw;
+    font-size: clamp(8px, 0.75cqw, 12px);
+  }
+
+  .scene-counter {
+    right: 1.6cqw;
+    font-size: clamp(8px, 0.7cqw, 11px);
+  }
+
+  .counter-line {
+    height: 3cqw;
+  }
+}
+
+/* Celular deitado / janelas baixas: mesma versão horizontal, barra de controles compacta */
+@media (min-width: 600px) and (orientation: landscape) and (max-height: 559px) {
+  .app-shell {
+    padding: 8px 12px;
+  }
+
+  .player-frame {
+    width: min(1280px, calc(100vw - 24px), calc((100vh - 16px - 52px) * 16 / 9));
+  }
+
+  .controls {
+    height: 52px;
+    padding: 0 16px;
+  }
+
+  .outside-caption {
+    display: none;
+  }
+
+  .icon-button {
+    width: 32px;
+    height: 32px;
+  }
+
+  .play-button {
+    width: 36px;
+    height: 36px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
